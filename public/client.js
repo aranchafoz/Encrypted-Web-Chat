@@ -3,17 +3,19 @@ var key = prompt("Enter the encryption key");
 
 var lastSender = "";
 
+var sjcl = require("sjcl");
+
 function parsePackage(pkg) {
     var spl = pkg.split('%%%%');
     return { user: spl[0], message: spl[1] };
 }
 
 function encrypt(message) {
-  return message;
+  return sjcl.encrypt(key, message);
 }
 
 function decrypt(message) {
-  return message;
+  return sjcl.decrypt(key, message);
 }
 
 var socket = io();
