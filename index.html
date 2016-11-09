@@ -3,6 +3,7 @@
   <head>
     <title>Socket.IO chat</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
   <body>
     <ul id="messages"></ul>
@@ -11,24 +12,6 @@
     </form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-      var username = prompt("Please enter your name");
-      var key = prompt("Enter the encryption key");
-      function encrypt(message) {
-        return message;
-      }
-      function decrypt(message) {
-        return message;
-      }
-      var socket = io();
-      $('form').submit(function(){
-        socket.emit('chat message', encrypt(username + ': ' + $('#m').val()));
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(decrypt(msg)));
-      });
-    </script>
+    <script src="client.js" type="text/javascript"></script>
   </body>
 </html>
