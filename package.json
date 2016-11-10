@@ -1,7 +1,7 @@
 {
-  "name": "socket-chat-example",
+  "name": "Encrypted Web Chat",
   "version": "0.0.1",
-  "description": "my first socket.io app",
+  "description": "Project for GE2345",
   "dependencies": {
     "express": "^4.10.2",
     "install": "^0.8.2",
