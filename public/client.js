@@ -1,6 +1,8 @@
 var username = prompt("Please enter your name");
 var key = prompt("Enter the encryption key");
 
+var encypt = true;
+
 var lastSender = "";
 var sjcl = require("sjcl");
 
@@ -12,26 +14,28 @@ function parsePackage(pkg) {
     return { user: spl[0], message: spl[1] };
 }
 
-function encrypt(message) {
-  var encrypted = sjcl.encrypt(key, message);
-  return encrypted;
-}
-
-function decrypt(message) {
-  var decrypted = sjcl.decrypt(key, message);
-  return decrypted;
-}
-
 var socket = io();
 
 $('form').submit(function(){
-  socket.emit('chat message', encrypt(username + '%%%%' + $('#m').val()));
+  encrypt = $('#checked').is(":checked")
+  var message;
+  if (encrypt) {
+    message = sjcl.encrypt(key, '-' + username + '%%%%' + $('#m').val());
+  } else {
+    message = '-' + username + '%%%%' + $('#m').val();
+  }
+  socket.emit('chat message', message);
   $('#m').val('');
   return false;
 });
 
-socket.on('chat message', function(pkg){
-  pkg = parsePackage(decrypt(pkg));
+socket.on('chat message', function(pkg) {
+  if (pkg[0] != '-') {
+    pkg = sjcl.decrypt(key, pkg);
+  }
+  pkg = pkg.slice(1, pkg.length);
+  pkg = parsePackage(pkg);
+
 
   var messageTitle = "";
 
@@ -39,7 +43,6 @@ socket.on('chat message', function(pkg){
     messageTitle = '<p class="username">' + pkg["user"] + '</p>';
     lastSender = pkg["user"];
   }
-
   var arguments = "";
 
   if (pkg["user"] == username) {
