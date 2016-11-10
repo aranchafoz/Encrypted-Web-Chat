@@ -2,14 +2,10 @@ var username = prompt("Please enter your name");
 var key = prompt("Enter the encryption key");
 
 var lastSender = "";
-
-<<<<<<< Updated upstream
 var sjcl = require("sjcl");
-=======
+
 let colors = ['blue', 'red', 'purple', 'grey'];
 var users = [];
-
->>>>>>> Stashed changes
 
 function parsePackage(pkg) {
     var spl = pkg.split('%%%%');
@@ -17,11 +13,13 @@ function parsePackage(pkg) {
 }
 
 function encrypt(message) {
-  return sjcl.encrypt(key, message);
+  var encrypted = sjcl.encrypt(key, message);
+  return encrypted;
 }
 
 function decrypt(message) {
-  return sjcl.decrypt(key, message);
+  var decrypted = sjcl.decrypt(key, message);
+  return decrypted;
 }
 
 var socket = io();
