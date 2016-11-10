@@ -3,7 +3,13 @@ var key = prompt("Enter the encryption key");
 
 var lastSender = "";
 
+<<<<<<< Updated upstream
 var sjcl = require("sjcl");
+=======
+let colors = ['blue', 'red', 'purple', 'grey'];
+var users = [];
+
+>>>>>>> Stashed changes
 
 function parsePackage(pkg) {
     var spl = pkg.split('%%%%');
@@ -35,8 +41,26 @@ socket.on('chat message', function(pkg){
     messageTitle = '<p class="username">' + pkg["user"] + '</p>';
     lastSender = pkg["user"];
   }
-  let messageContent = '<p class="message_content">' + pkg["message"] + '</p>';
+
+  var arguments = "";
+
+  if (pkg["user"] == username) {
+     let id = "green"
+     arguments += 'id="' + id + '" class="right"';
+  } else {
+    var userNo = users.indexOf(pkg["user"]);
+    if (userNo == -1) {
+      users.push(pkg["user"]);
+      userNo = users.indexOf(pkg["user"]);
+    }
+    let id = colors[userNo % colors.length]
+    arguments += 'id="' + id + '"';
+  }
+
+  let messageContent = '<p class="message-content">' + pkg["message"] + '</p>';
+  window.scrollTo(-40, document.body.scrollHeight);
+
 
   $('#messages').append(
-    $('<li id="' + pkg["user"] + '">').append(messageTitle).append(messageContent));
+    $('<li ' + arguments + '>').append(messageTitle).append(messageContent));
 });

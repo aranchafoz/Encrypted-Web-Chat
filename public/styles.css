@@ -1,43 +1,104 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing:
-  border-box;
-};
+}
 
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
+  margin-bottom: 60px;
 }
 
 form {
-  background: #000;
-  padding: 3px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #BBBBBB;
   position: fixed;
   bottom: 0;
   width: 100%;
 }
 
-form input {
-  border: 0;
-  padding: 10px;
-  width: 90%;
-  margin-right: .5%;
-}
-
 form button {
   width: 9%;
-  background: rgb(130, 224, 255);
+  color: rgb(120, 120, 120);
+  background: rgb(230, 230, 230);
+  font-weight: bold;
+  text-transform: uppercase;
   border: none;
   padding: 10px;
+  float: right;
+}
+
+form input {
+  width: 89%;
+  border: 0;
+  padding: 10px;
+  margin: 0;
+}
+
+form input:focus {
+  outline-width: 0;
 }
 
 ul {
+  display: inline-block;
+  width: 100%;
   font-family: 'Roboto', sans-serif;
-  font-size: 15 px;
+  font-size: 10px;
+  list-style-type: none;
+  margin-top: 10px;
+}
+
+li {
+  vertical-align:top;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  padding: 5px;
+  display: inline-block;
+  clear: both;
+  float: left;
+  background-color: rgb(166, 217, 106);
+  border-radius: 5px;
+}
+
+.right {
+  float: right;
+}
+
+li p {
+  display: inline-block;
+  clear: both;
+  float:left;
 }
 
 .username {
   text-transform: uppercase;
+  font-weight: bold;
+
   font-size: 10px;
+}
+
+.message-content {
+  font-size: 13px;
+}
+
+#green {
+  background-color: rgb(166, 217, 106);
+}
+
+#blue {
+  background-color: rgb(145, 191, 219);
+}
+
+#purple {
+  background-color: rgb(178, 171, 210);
+}
+
+#grey {
+  background-color: rgb(180, 176, 173);
+}
+
+#red {
+  background-color: rgb(255, 80, 80);
 }
